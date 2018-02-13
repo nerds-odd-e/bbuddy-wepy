@@ -107,7 +107,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: 'bbuddy-wepy'
     }
     components = {
       panel: Panel,
