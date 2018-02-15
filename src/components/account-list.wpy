@@ -1,0 +1,48 @@
+<style lang="less">
+  .mylist:odd {
+    color: red;
+  }
+
+  .mylist:even {
+    color: green;
+  }
+</style>
+<template>
+  <view class="list">
+    <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+      <view @tap="tap" class="mylist">
+        <text>{{item.name}}</text>: {{item.balance}}
+      </view>
+    </block>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import {connect, getStore} from 'wepy-redux'
+  import {ALL_ACCOUNTS_SUCCESS} from '../store/types'
+  import {createAction} from 'redux-actions'
+
+  @connect({
+    list(state) {
+      return state.account.allAccounts
+    }
+  }, {})
+
+  export default class List extends wepy.component {
+    onLoad() {
+      wepy.request({
+        url: 'http://localhost:3000/accounts',
+        header: {
+          'access-token': '26QdnGkCG5a6-tY5tlysHA',
+          'token-type': 'Bearer',
+          'uid': 'joseph.yao.ruozhou@gmail.com',
+          'client': 'Lso4e8dPfl7Wcr09315FFA',
+          'expiry': '1519893058'
+        },
+        success: (response) => {
+          getStore().dispatch(createAction(ALL_ACCOUNTS_SUCCESS)(response.data))
+        }
+      })
+    }
+  }
+</script>

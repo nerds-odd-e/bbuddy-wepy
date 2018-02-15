@@ -17,6 +17,11 @@
 </style>
 <template>
   <view class="container">
+    <panel>
+      <view class="title" slot="title">Account List</view>
+      <accountList></accountList>
+    </panel>
+
     <view class="userinfo" @tap="handleViewTap">
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
@@ -71,11 +76,6 @@
       </repeat>
     </panel>
 
-    <panel>
-      <view class="title" slot="title">测试列表</view>
-      <list></list>
-    </panel>
-
     <toast />
   </view>
 </template>
@@ -86,6 +86,7 @@
   import Panel from '@/components/panel' // alias example
   import Counter from 'counter' // alias example
   import List from '../components/list' // aliasFields example
+  import AccountList from '../components/account-list'
   import moduleA from 'module-a' // aliasFields ignore module example
   import Group from '../components/group'
   import Toast from 'wepy-com-toast'
@@ -114,6 +115,7 @@
       counter1: Counter,
       counter2: Counter,
       list: List,
+      accountList: AccountList,
       group: Group,
       toast: Toast
     }
