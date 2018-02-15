@@ -18,18 +18,20 @@
 </template>
 <script>
   import wepy from 'wepy'
-  import {connect, getStore} from 'wepy-redux'
+  import {connect} from 'wepy-redux'
   import {ALL_ACCOUNTS_SUCCESS} from '../store/types'
-  import {createAction} from 'redux-actions'
 
   @connect({
     list(state) {
       return state.account.allAccounts
     }
-  }, {})
+  }, {
+    allAccounts: ALL_ACCOUNTS_SUCCESS
+  })
 
   export default class List extends wepy.component {
     onLoad() {
+      const {allAccounts} = this.methods
       wepy.request({
         url: 'http://localhost:3000/accounts',
         header: {
@@ -40,7 +42,7 @@
           'expiry': '1519893058'
         },
         success: (response) => {
-          getStore().dispatch(createAction(ALL_ACCOUNTS_SUCCESS)(response.data))
+          allAccounts(response.data)
         }
       })
     }
