@@ -8,6 +8,7 @@
         <text>Balance</text>
         <input name="balance" placeholder="Input balance here" value="{{balance}}"/>
         <button formType="submit">Save</button>
+        <button bindtap="delete" data-id="{{id}}">Delete</button>
       </form>
     </panel>
   </view>
@@ -17,6 +18,27 @@
 
   export default class EditAccount extends wepy.page {
     methods = {
+      delete (event) {
+        wepy.request({
+          url: `http://192.168.1.10:3000/accounts/${event.currentTarget.dataset.id}`,
+          method: 'DELETE',
+          header: {
+            'access-token': '26QdnGkCG5a6-tY5tlysHA',
+            'token-type': 'Bearer',
+            'uid': 'joseph.yao.ruozhou@gmail.com',
+            'client': 'Lso4e8dPfl7Wcr09315FFA',
+            'expiry': '1519893058'
+          },
+          success: (response) => {
+            wepy.navigateBack()
+            wepy.showToast({
+              title: 'Delete Account Success',
+              icon: 'success',
+              duration: 1000
+            })
+          }
+        })
+      },
       save (event) {
         wepy.request({
           url: `http://192.168.1.10:3000/accounts/${event.source.data.id}`,
