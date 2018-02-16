@@ -30,6 +30,12 @@
             'expiry': '1519893058'
           },
           success: (response) => {
+            wepy.navigateBack()
+            wepy.showToast({
+              title: 'Add Account Success',
+              icon: 'success',
+              duration: 1000
+            })
           }
         })
       }

@@ -20,5 +20,8 @@
     components = {
       AccountList
     }
+    onShow() {
+      this.$invoke('AccountList', 'onLoad')
+    }
   }
 </script>
