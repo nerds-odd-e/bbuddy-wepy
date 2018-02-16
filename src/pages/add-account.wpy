@@ -1,0 +1,38 @@
+<template>
+  <view class="container">
+    <panel>
+      <view class="title" slot="title">Add Account</view>
+      <form bindsubmit="save">
+        <text>Name</text>
+        <input name="name" placeholder="Input name here"/>
+        <text>Balance</text>
+        <input name="balance" placeholder="Input balance here"/>
+        <button formType="submit">Save</button>
+      </form>
+    </panel>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class AddAccount extends wepy.page {
+    methods = {
+      save (event) {
+        wepy.request({
+          url: 'http://192.168.1.11:3000/accounts',
+          method: 'POST',
+          data: event.detail.value,
+          header: {
+            'access-token': '26QdnGkCG5a6-tY5tlysHA',
+            'token-type': 'Bearer',
+            'uid': 'joseph.yao.ruozhou@gmail.com',
+            'client': 'Lso4e8dPfl7Wcr09315FFA',
+            'expiry': '1519893058'
+          },
+          success: (response) => {
+          }
+        })
+      }
+    }
+  }
+</script>
