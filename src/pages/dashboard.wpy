@@ -5,23 +5,51 @@
       <view class="btn-area">
         <navigator url="/pages/add-account">Add Account</navigator>
       </view>
-      <AccountList></AccountList>
+      <view class="list">
+        <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <view @tap="tap" class="mylist">
+            <text>{{item.name}}</text>: {{item.balance}}
+          </view>
+        </block>
+      </view>
     </panel>
   </view>
 </template>
 <script>
   import wepy from 'wepy'
-  import AccountList from '../components/account-list'
+  import {connect} from 'wepy-redux'
+  import {ALL_ACCOUNTS_SUCCESS} from '../store/types'
+
+  @connect({
+    list(state) {
+      return state.account.allAccounts
+    }
+  }, {
+    allAccounts: ALL_ACCOUNTS_SUCCESS
+  })
 
   export default class Dashboard extends wepy.page {
     config = {
       navigationBarTitleText: 'bbuddy-wepy'
     }
-    components = {
-      AccountList
-    }
     onShow() {
-      this.$invoke('AccountList', 'onLoad')
+      this.onLoad()
+    }
+    onLoad() {
+      const {allAccounts} = this.methods
+      wepy.request({
+        url: 'http://192.168.1.10:3000/accounts',
+        header: {
+          'access-token': '26QdnGkCG5a6-tY5tlysHA',
+          'token-type': 'Bearer',
+          'uid': 'joseph.yao.ruozhou@gmail.com',
+          'client': 'Lso4e8dPfl7Wcr09315FFA',
+          'expiry': '1519893058'
+        },
+        success: (response) => {
+          allAccounts(response.data)
+        }
+      })
     }
   }
 </script>

@@ -19,7 +19,7 @@
     methods = {
       save (event) {
         wepy.request({
-          url: 'http://192.168.1.11:3000/accounts',
+          url: 'http://192.168.1.10:3000/accounts',
           method: 'POST',
           data: event.detail.value,
           header: {
