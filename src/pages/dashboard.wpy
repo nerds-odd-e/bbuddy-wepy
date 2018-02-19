@@ -22,6 +22,7 @@
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
   import {loadAllAccounts} from '../store/actions'
+  import qs from 'qs'
 
   @connect({
     list(state) {
@@ -40,9 +41,9 @@
     }
     methods = {
       edit: function (e) {
-        const {index} = e.currentTarget.dataset
+        const queryStringOfItem = qs.stringify(this.list[e.currentTarget.dataset.index])
         wepy.navigateTo({
-          url: `/pages/edit-account?item=${JSON.stringify(this.list[index])}`
+          url: `/pages/edit-account?${queryStringOfItem}`
         })
       }
     }

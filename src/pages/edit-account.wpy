@@ -17,6 +17,7 @@
   import wepy from 'wepy'
   import {deleteAccount, editAccount} from '../store/actions'
   import {connect} from 'wepy-redux'
+  import qs from 'qs'
 
   @connect({}, {
     editAccount,
@@ -42,7 +43,7 @@
     }
 
     onLoad(params) {
-      this.setData(JSON.parse(params.item))
+      this.setData(qs.parse(params))
     }
   }
 </script>
