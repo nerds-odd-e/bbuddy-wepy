@@ -1,11 +1,11 @@
 import { handleActions } from 'redux-actions'
-import {ALL_ACCOUNTS_SUCCESS} from '../types'
+import {LOAD_ALL_ACCOUNTS} from '../types'
 
 export default handleActions({
-  [ALL_ACCOUNTS_SUCCESS] (state, action) {
+  [LOAD_ALL_ACCOUNTS] (state, action) {
     return {
       ...state,
-      allAccounts: action.payload
+      allAccounts: action.payload.data
     }
   }
 }, {

@@ -1,8 +1,8 @@
 import wepy from 'wepy'
 
-const callApi = (endpoint, method, data, afterSuccess) => {
+export const callApi = (endpoint, method, data, afterSuccess) => {
   const url = 'http://192.168.1.10:3000/' + endpoint
-  wepy.request({
+  return () => wepy.request({
     url,
     header: {
       'access-token': '26QdnGkCG5a6-tY5tlysHA',
@@ -12,25 +12,18 @@ const callApi = (endpoint, method, data, afterSuccess) => {
       'expiry': '1519893058'
     },
     method,
-    data,
-    success: (response) => {
-      afterSuccess(response.data)
-    }
+    data
   })
 }
 
-export const loadAllAccounts = (afterSuccess) => {
-  callApi('accounts', 'GET', {}, afterSuccess)
-}
-
 export const addAccount = (account, afterSuccess) => {
-  callApi('accounts', 'POST', account, afterSuccess)
+  callApi('accounts', 'POST', account)().then(afterSuccess)
 }
 
 export const editAccount = (account, afterSuccess) => {
-  callApi(`accounts/${account.id}`, 'PUT', account, afterSuccess)
+  callApi(`accounts/${account.id}`, 'PUT', account)().then(afterSuccess)
 }
 
 export const deleteAccount = (account, afterSuccess) => {
-  callApi(`accounts/${account.id}`, 'DELETE', {}, afterSuccess)
+  callApi(`accounts/${account.id}`, 'DELETE', {})().then(afterSuccess)
 }

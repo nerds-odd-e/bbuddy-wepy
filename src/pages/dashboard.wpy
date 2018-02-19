@@ -18,15 +18,14 @@
 <script>
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
-  import {ALL_ACCOUNTS_SUCCESS} from '../store/types'
-  import {loadAllAccounts} from '../api'
+  import {LOAD_ALL_ACCOUNTS} from '../store/actions'
 
   @connect({
     list(state) {
       return state.account.allAccounts
     }
   }, {
-    allAccounts: ALL_ACCOUNTS_SUCCESS
+    loadAllAccounts: LOAD_ALL_ACCOUNTS
   })
 
   export default class Dashboard extends wepy.page {
@@ -45,8 +44,7 @@
       this.onLoad()
     }
     onLoad() {
-      const {allAccounts} = this.methods
-      loadAllAccounts(allAccounts)
+      this.methods.loadAllAccounts()
     }
   }
 </script>
