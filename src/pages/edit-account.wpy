@@ -15,56 +15,38 @@
 </template>
 <script>
   import wepy from 'wepy'
+  import {editAccount, deleteAccount} from '../api'
 
   export default class EditAccount extends wepy.page {
     methods = {
-      delete (event) {
-        wepy.request({
-          url: `http://192.168.1.10:3000/accounts/${event.currentTarget.dataset.id}`,
-          method: 'DELETE',
-          header: {
-            'access-token': '26QdnGkCG5a6-tY5tlysHA',
-            'token-type': 'Bearer',
-            'uid': 'joseph.yao.ruozhou@gmail.com',
-            'client': 'Lso4e8dPfl7Wcr09315FFA',
-            'expiry': '1519893058'
-          },
-          success: (response) => {
-            wepy.navigateBack()
-            wepy.showToast({
-              title: 'Delete Account Success',
-              icon: 'success',
-              duration: 1000
-            })
-          }
+      delete(event) {
+        deleteAccount({
+          id: event.currentTarget.dataset.id
+        }, () => {
+          wepy.navigateBack()
+          wepy.showToast({
+            title: 'Delete Account Success',
+            icon: 'success',
+            duration: 1000
+          })
         })
       },
-      save (event) {
-        wepy.request({
-          url: `http://192.168.1.10:3000/accounts/${event.source.data.id}`,
-          method: 'PUT',
-          data: {
-            name: event.detail.value.name,
-            balance: event.detail.value.balance
-          },
-          header: {
-            'access-token': '26QdnGkCG5a6-tY5tlysHA',
-            'token-type': 'Bearer',
-            'uid': 'joseph.yao.ruozhou@gmail.com',
-            'client': 'Lso4e8dPfl7Wcr09315FFA',
-            'expiry': '1519893058'
-          },
-          success: (response) => {
-            wepy.navigateBack()
-            wepy.showToast({
-              title: 'Edit Account Success',
-              icon: 'success',
-              duration: 1000
-            })
-          }
+      save(event) {
+        editAccount({
+          id: event.source.data.id,
+          name: event.detail.value.name,
+          balance: event.detail.value.balance
+        }, () => {
+          wepy.navigateBack()
+          wepy.showToast({
+            title: 'Edit Account Success',
+            icon: 'success',
+            duration: 1000
+          })
         })
       }
     }
+
     onLoad(params) {
       this.setData(JSON.parse(params.item))
     }
