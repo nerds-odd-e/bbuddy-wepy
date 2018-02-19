@@ -2,13 +2,7 @@
   <view class="container">
     <panel>
       <view class="title" slot="title">Add Account</view>
-      <form bindsubmit="save">
-        <text>Name</text>
-        <input name="name" placeholder="Input name here"/>
-        <text>Balance</text>
-        <input name="balance" placeholder="Input balance here"/>
-        <button formType="submit">Save</button>
-      </form>
+      <account @save.user="add"/>
     </panel>
   </view>
 </template>
@@ -16,6 +10,7 @@
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
   import {addAccount} from '../store/actions'
+  import Account from '../components/account'
 
   @connect({}, {
     addAccount
@@ -23,10 +18,13 @@
 
   export default class AddAccount extends wepy.page {
     methods = {
-      save (event) {
-        this.methods.addAccount(event.detail.value)
+      add (account) {
+        this.methods.addAccount(account)
         wepy.navigateBack()
       }
+    }
+    components = {
+      account: Account
     }
   }
 </script>

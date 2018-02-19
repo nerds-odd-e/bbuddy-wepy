@@ -1,0 +1,21 @@
+<template>
+  <form bindsubmit="save">
+    <text>Name</text>
+    <input name="name" placeholder="Input name here" />
+    <text>Balance</text>
+    <input name="balance" placeholder="Input balance here" />
+    <button formType="submit">Save</button>
+  </form>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class Account extends wepy.component {
+    methods = {
+      save(e) {
+        this.$emit('save', e.detail.value)
+      }
+    }
+  }
+
+</script>
