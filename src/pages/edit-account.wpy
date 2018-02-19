@@ -15,35 +15,29 @@
 </template>
 <script>
   import wepy from 'wepy'
-  import {editAccount, deleteAccount} from '../api'
+  import {deleteAccount, editAccount} from '../store/actions'
+  import {connect} from 'wepy-redux'
+
+  @connect({}, {
+    editAccount,
+    deleteAccount
+  })
 
   export default class EditAccount extends wepy.page {
     methods = {
       delete(event) {
-        deleteAccount({
+        this.methods.deleteAccount({
           id: event.currentTarget.dataset.id
-        }, () => {
-          wepy.navigateBack()
-          wepy.showToast({
-            title: 'Delete Account Success',
-            icon: 'success',
-            duration: 1000
-          })
         })
+        wepy.navigateBack()
       },
       save(event) {
-        editAccount({
+        this.methods.editAccount({
           id: event.source.data.id,
           name: event.detail.value.name,
           balance: event.detail.value.balance
-        }, () => {
-          wepy.navigateBack()
-          wepy.showToast({
-            title: 'Edit Account Success',
-            icon: 'success',
-            duration: 1000
-          })
         })
+        wepy.navigateBack()
       }
     }
 

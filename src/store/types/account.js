@@ -1,2 +1,4 @@
 export const LOAD_ALL_ACCOUNTS = 'LOAD_ALL_ACCOUNTS'
 export const ADD_ACCOUNT = 'ADD_ACCOUNT'
+export const EDIT_ACCOUNT = 'EDIT_ACCOUNT'
+export const DELETE_ACCOUNT = 'DELETE_ACCOUNT'
