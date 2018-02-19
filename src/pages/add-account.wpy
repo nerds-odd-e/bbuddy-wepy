@@ -14,19 +14,18 @@
 </template>
 <script>
   import wepy from 'wepy'
-  import {addAccount} from '../api'
+  import {connect} from 'wepy-redux'
+  import {addAccount} from '../store/actions'
+
+  @connect({}, {
+    addAccount
+  })
 
   export default class AddAccount extends wepy.page {
     methods = {
       save (event) {
-        addAccount(event.detail.value, () => {
-          wepy.navigateBack()
-          wepy.showToast({
-            title: 'Add Account Success',
-            icon: 'success',
-            duration: 1000
-          })
-        })
+        this.methods.addAccount(event.detail.value)
+        wepy.navigateBack()
       }
     }
   }

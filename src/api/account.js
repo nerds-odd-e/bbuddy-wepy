@@ -16,10 +16,6 @@ export const callApi = (endpoint, method, data, afterSuccess) => {
   })
 }
 
-export const addAccount = (account, afterSuccess) => {
-  callApi('accounts', 'POST', account)().then(afterSuccess)
-}
-
 export const editAccount = (account, afterSuccess) => {
   callApi(`accounts/${account.id}`, 'PUT', account)().then(afterSuccess)
 }

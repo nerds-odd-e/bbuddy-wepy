@@ -5,10 +5,13 @@
       <view class="btn-area">
         <navigator url="/pages/add-account">Add Account</navigator>
       </view>
+      <view wx:if="{{message}}">
+        <text>Message: {{message}}</text>
+      </view>
       <view class="list">
         <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
           <view @tap="edit" data-index="{{index}}" class="mylist">
-            <text>{{item.name}}</text>: {{item.balance}}
+            <text>{{item.name}}: {{item.balance}}</text>
           </view>
         </block>
       </view>
@@ -18,14 +21,17 @@
 <script>
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
-  import {LOAD_ALL_ACCOUNTS} from '../store/actions'
+  import {loadAllAccounts} from '../store/actions'
 
   @connect({
     list(state) {
       return state.account.allAccounts
+    },
+    message(state) {
+      return state.toast.message
     }
   }, {
-    loadAllAccounts: LOAD_ALL_ACCOUNTS
+    loadAllAccounts
   })
 
   export default class Dashboard extends wepy.page {
@@ -33,16 +39,18 @@
       navigationBarTitleText: 'bbuddy-wepy'
     }
     methods = {
-      edit: function(e) {
+      edit: function (e) {
         const {index} = e.currentTarget.dataset
         wepy.navigateTo({
           url: `/pages/edit-account?item=${JSON.stringify(this.list[index])}`
         })
       }
     }
-    onShow() {
-      this.onLoad()
+
+    onRoute() {
+      this.methods.loadAllAccounts()
     }
+
     onLoad() {
       this.methods.loadAllAccounts()
     }
