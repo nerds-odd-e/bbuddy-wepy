@@ -21,8 +21,8 @@
   export default class EditAccount extends wepy.page {
     data = {
       id: undefined,
-      name: '',
-      balance: 0
+      name: undefined,
+      balance: undefined
     }
     components = {
       account: Account
@@ -44,9 +44,7 @@
     }
 
     onLoad(params) {
-      this.id = params.id
-      this.name = params.name
-      this.balance = params.balance
+      Object.assign(this, JSON.parse(params.account))
     }
   }
 </script>
