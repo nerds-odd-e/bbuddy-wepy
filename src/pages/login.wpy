@@ -9,7 +9,7 @@
         <input name="password" placeholder="Input password here" type="password"/>
         <button formType="submit">Sign In</button>
       </form>
-      <auth :needLogin.sync="needLogin"/>
+      <auth/>
     </panel>
   </view>
 </template>
@@ -19,11 +19,7 @@
   import {login} from '../store/actions'
   import Auth from '../components/auth'
 
-  @connect({
-    needLogin(state) {
-      return state.auth.needLogin
-    }
-  }, {
+  @connect({}, {
     login
   })
 

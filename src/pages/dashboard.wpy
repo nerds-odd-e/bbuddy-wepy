@@ -6,7 +6,6 @@
         <navigator url="/pages/add-account">Add Account</navigator>
       </view>
       <toast :message.sync="message"/>
-      <auth :needLogin.sync="needLogin"/>
       <view class="list">
         <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
           <view @tap="edit" data-index="{{index}}" class="mylist">
@@ -14,6 +13,7 @@
           </view>
         </block>
       </view>
+      <auth/>
     </panel>
   </view>
 </template>
@@ -30,9 +30,6 @@
     },
     message(state) {
       return state.toast.message
-    },
-    needLogin(state) {
-      return state.auth.needLogin
     }
   }, {
     loadAllAccounts

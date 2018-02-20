@@ -1,11 +1,15 @@
 <template/>
 <script>
   import wepy from 'wepy'
+  import {connect} from 'wepy-redux'
+
+  @connect({
+    needLogin(state) {
+      return state.auth.needLogin
+    }
+  }, {})
 
   export default class Auth extends wepy.component {
-    props = {
-      needLogin: Boolean
-    }
     watch = {
       needLogin(newValue, oldValue) {
         if (newValue) {
