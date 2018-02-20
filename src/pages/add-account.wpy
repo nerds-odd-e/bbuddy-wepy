@@ -2,7 +2,7 @@
   <view class="container">
     <panel>
       <view class="title" slot="title">Add Account</view>
-      <account @save.user="add"/>
+      <account @save.user="addAccount"/>
     </panel>
   </view>
 </template>
@@ -17,11 +17,6 @@
   })
 
   export default class AddAccount extends wepy.page {
-    methods = {
-      add (account) {
-        this.methods.addAccount(account)
-      }
-    }
     components = {
       account: Account
     }
