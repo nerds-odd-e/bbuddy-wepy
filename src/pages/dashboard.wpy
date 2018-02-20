@@ -5,7 +5,6 @@
       <view class="btn-area">
         <navigator url="/pages/add-account">Add Account</navigator>
       </view>
-      <toast :message.sync="message"/>
       <view class="list">
         <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
           <view @tap="edit" data-index="{{index}}" class="mylist">
@@ -14,6 +13,7 @@
         </block>
       </view>
     </panel>
+    <toast/>
     <auth/>
   </view>
 </template>
@@ -27,9 +27,6 @@
   @connect({
     list(state) {
       return state.account.allAccounts
-    },
-    message(state) {
-      return state.toast.message
     }
   }, {
     loadAllAccounts

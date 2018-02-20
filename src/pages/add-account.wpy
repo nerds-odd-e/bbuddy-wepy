@@ -11,7 +11,6 @@
   import {connect} from 'wepy-redux'
   import {addAccount} from '../store/actions'
   import Account from '../components/account'
-  import Auth from '../components/auth'
 
   @connect({}, {
     addAccount
@@ -25,8 +24,7 @@
       }
     }
     components = {
-      account: Account,
-      auth: Auth
+      account: Account
     }
   }
 </script>

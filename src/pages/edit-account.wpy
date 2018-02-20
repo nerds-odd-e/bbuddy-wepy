@@ -5,7 +5,6 @@
       <account @save.user="edit" :name.sync="name" :balance.sync="balance"></account>
       <button bindtap="delete">Delete</button>
     </panel>
-    <auth/>
   </view>
 </template>
 <script>
@@ -13,7 +12,6 @@
   import {deleteAccount, editAccount} from '../store/actions'
   import {connect} from 'wepy-redux'
   import Account from '../components/account'
-  import Auth from '../components/auth'
 
   @connect({}, {
     editAccount,
@@ -27,8 +25,7 @@
       balance: undefined
     }
     components = {
-      account: Account,
-      auth: Auth
+      account: Account
     }
     methods = {
       delete() {

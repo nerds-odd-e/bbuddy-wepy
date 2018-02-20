@@ -1,14 +1,15 @@
 <template/>
 <script>
   import wepy from 'wepy'
+  import {connect} from 'wepy-redux'
+
+  @connect({
+    message(state) {
+      return state.toast.message
+    }
+  }, {})
 
   export default class Toast extends wepy.component {
-    props = {
-      message: {
-        type: String,
-        default: undefined
-      }
-    }
     watch = {
       message: function (newValue, oldValue) {
         if (newValue) {
