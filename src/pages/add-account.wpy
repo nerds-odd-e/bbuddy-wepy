@@ -20,7 +20,6 @@
     methods = {
       add (account) {
         this.methods.addAccount(account)
-        wepy.navigateBack()
       }
     }
     components = {

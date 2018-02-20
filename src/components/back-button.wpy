@@ -1,0 +1,20 @@
+<template>
+  <button @tap="save" formType="{{formType}}">{{name}}</button>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class BackButton extends wepy.component {
+    props = {
+      name: String,
+      formType: String
+    }
+    methods = {
+      save(e) {
+        this.$emit('backTap')
+        wepy.navigateBack()
+      }
+    }
+  }
+
+</script>

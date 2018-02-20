@@ -4,16 +4,20 @@
     <input name="name" placeholder="Input name here" value="{{name}}"/>
     <text>Balance</text>
     <input name="balance" placeholder="Input balance here" value="{{balance}}" />
-    <button formType="submit">Save</button>
+    <backButton formType="submit" name="Save" @backTap="save"></backButton>
   </form>
 </template>
 <script>
   import wepy from 'wepy'
+  import BackButton from './back-button'
 
   export default class Account extends wepy.component {
     props = {
       name: String,
       balance: Number
+    }
+    components = {
+      backButton: BackButton
     }
     methods = {
       save(e) {
