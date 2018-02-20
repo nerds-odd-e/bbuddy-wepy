@@ -1,10 +1,10 @@
 import wepy from 'wepy'
 import {loadToken} from './token'
+import {HOST} from '../config'
 
 export const callApi = (endpoint, method, data) => {
-  const url = 'http://192.168.1.10:3000/' + endpoint
   return () => wepy.request({
-    url,
+    url: HOST + endpoint,
     header: {...loadToken()},
     method,
     data
