@@ -5,9 +5,7 @@
       <view class="btn-area">
         <navigator url="/pages/add-account">Add Account</navigator>
       </view>
-      <view wx:if="{{message}}">
-        <text>Message: {{message}}</text>
-      </view>
+      <toast :message.sync="message"/>
       <view class="list">
         <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
           <view @tap="edit" data-index="{{index}}" class="mylist">
@@ -22,6 +20,7 @@
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
   import {loadAllAccounts} from '../store/actions'
+  import Toast from '../components/toast'
 
   @connect({
     list(state) {
@@ -37,6 +36,9 @@
   export default class Dashboard extends wepy.page {
     config = {
       navigationBarTitleText: 'bbuddy-wepy'
+    }
+    components = {
+      toast: Toast
     }
     methods = {
       edit: function (e) {

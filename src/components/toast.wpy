@@ -1,0 +1,25 @@
+<template/>
+<script>
+  import wepy from 'wepy'
+
+  export default class Toast extends wepy.component {
+    props = {
+      message: {
+        type: String,
+        default: undefined
+      }
+    }
+    watch = {
+      message: function (newValue, oldValue) {
+        if (newValue) {
+          wepy.showToast({
+            title: this.message,
+            icon: 'success',
+            duration: 1000
+          })
+        }
+      }
+    }
+  }
+
+</script>
