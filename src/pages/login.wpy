@@ -9,7 +9,6 @@
         <input name="password" placeholder="Input password here" type="password"/>
         <button formType="submit">Sign In</button>
       </form>
-      <auth/>
     </panel>
   </view>
 </template>
@@ -17,16 +16,12 @@
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
   import {login} from '../store/actions'
-  import Auth from '../components/auth'
 
   @connect({}, {
     login
   })
 
   export default class Login extends wepy.page {
-    components = {
-      auth: Auth
-    }
     methods = {
       signIn(e) {
         this.methods.login(e.detail.value)

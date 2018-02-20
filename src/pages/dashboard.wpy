@@ -13,8 +13,8 @@
           </view>
         </block>
       </view>
-      <auth/>
     </panel>
+    <auth/>
   </view>
 </template>
 <script>

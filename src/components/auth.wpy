@@ -10,15 +10,21 @@
   }, {})
 
   export default class Auth extends wepy.component {
+    static isInLogin = false
     watch = {
       needLogin(newValue, oldValue) {
-        if (newValue) {
+        if (newValue && !Auth.isInLogin) {
+          Auth.isInLogin = true
           wepy.navigateTo({
             url: '/pages/login'
           })
-        } else {
-          wepy.navigateBack()
+          return
         }
+        if (newValue && Auth.isInLogin) {
+          return
+        }
+        Auth.isInLogin = false
+        wepy.navigateBack()
       }
     }
   }
