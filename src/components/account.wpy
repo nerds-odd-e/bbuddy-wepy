@@ -1,9 +1,9 @@
 <template>
   <form bindsubmit="save">
     <text>Name</text>
-    <input name="name" placeholder="Input name here" />
+    <input name="name" placeholder="Input name here" value="{{name}}"/>
     <text>Balance</text>
-    <input name="balance" placeholder="Input balance here" />
+    <input name="balance" placeholder="Input balance here" value="{{balance}}" />
     <button formType="submit">Save</button>
   </form>
 </template>
@@ -11,6 +11,10 @@
   import wepy from 'wepy'
 
   export default class Account extends wepy.component {
+    props = {
+      name: String,
+      balance: Number
+    }
     methods = {
       save(e) {
         this.$emit('save', e.detail.value)

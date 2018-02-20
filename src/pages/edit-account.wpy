@@ -2,14 +2,8 @@
   <view class="container">
     <panel>
       <view class="title" slot="title">Edit Account</view>
-      <form bindsubmit="save">
-        <text>Name</text>
-        <input name="name" placeholder="Input name here" value="{{name}}"/>
-        <text>Balance</text>
-        <input name="balance" placeholder="Input balance here" value="{{balance}}"/>
-        <button formType="submit">Save</button>
-        <button bindtap="delete" data-id="{{id}}">Delete</button>
-      </form>
+      <account @save.user="edit" :name.sync="name" :balance.sync="balance"></account>
+      <button bindtap="delete">Delete</button>
     </panel>
   </view>
 </template>
@@ -17,7 +11,7 @@
   import wepy from 'wepy'
   import {deleteAccount, editAccount} from '../store/actions'
   import {connect} from 'wepy-redux'
-  import qs from 'qs'
+  import Account from '../components/account'
 
   @connect({}, {
     editAccount,
@@ -25,25 +19,34 @@
   })
 
   export default class EditAccount extends wepy.page {
+    data = {
+      id: undefined,
+      name: '',
+      balance: 0
+    }
+    components = {
+      account: Account
+    }
     methods = {
-      delete(event) {
+      delete() {
         this.methods.deleteAccount({
-          id: event.currentTarget.dataset.id
+          id: this.id
         })
         wepy.navigateBack()
       },
-      save(event) {
+      edit(account) {
         this.methods.editAccount({
-          id: event.source.data.id,
-          name: event.detail.value.name,
-          balance: event.detail.value.balance
+          ...account,
+          id: this.id
         })
         wepy.navigateBack()
       }
     }
 
     onLoad(params) {
-      this.setData(qs.parse(params))
+      this.id = params.id
+      this.name = params.name
+      this.balance = params.balance
     }
   }
 </script>
