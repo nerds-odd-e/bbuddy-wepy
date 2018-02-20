@@ -1,0 +1,19 @@
+<template/>
+<script>
+  import wepy from 'wepy'
+
+  export default class Auth extends wepy.component {
+    props = {
+      needLogin: Boolean
+    }
+    watch = {
+      needLogin(newValue, oldValue) {
+        if (newValue) {
+          wepy.navigateTo({
+            url: '/pages/login'
+          })
+        }
+      }
+    }
+  }
+</script>

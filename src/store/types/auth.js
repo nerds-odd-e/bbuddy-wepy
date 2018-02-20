@@ -1,0 +1,1 @@
+export const REQUIRE_LOGIN = 'REQUIRE_LOGIN'

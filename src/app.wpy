@@ -24,7 +24,8 @@ export default class extends wepy.app {
     pages: [
       'pages/dashboard',
       'pages/add-account',
-      'pages/edit-account'
+      'pages/edit-account',
+      'pages/login'
     ],
     window: {
       backgroundTextStyle: 'light',

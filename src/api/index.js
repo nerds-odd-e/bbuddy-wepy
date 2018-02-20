@@ -5,11 +5,11 @@ export const callApi = (endpoint, method, data) => {
   return () => wepy.request({
     url,
     header: {
-      'access-token': '26QdnGkCG5a6-tY5tlysHA',
+      'access-token': '7cClbZU0jWpJardAiQ4Pmw',
       'token-type': 'Bearer',
       'uid': 'joseph.yao.ruozhou@gmail.com',
-      'client': 'Lso4e8dPfl7Wcr09315FFA',
-      'expiry': '1519893058'
+      'client': '-5KwblHPX7Chv6GJH_vCbA',
+      'expiry': '1519098141'
     },
     method,
     data

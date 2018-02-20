@@ -1,0 +1,26 @@
+<template>
+  <view class="container">
+    <panel>
+      <view class="title" slot="title">Login</view>
+      <form bindsubmit="login">
+        <text>Email</text>
+        <input name="email" placeholder="Input email here"/>
+        <text>Password</text>
+        <input name="password" placeholder="Input password here" type="password"/>
+        <button formType="submit">Login</button>
+      </form>
+    </panel>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class Login extends wepy.page {
+    methods = {
+      login(event) {
+        console.log(event.detail.value)
+      }
+    }
+  }
+
+</script>

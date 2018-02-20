@@ -6,6 +6,7 @@
         <navigator url="/pages/add-account">Add Account</navigator>
       </view>
       <toast :message.sync="message"/>
+      <auth :needLogin.sync="needLogin"/>
       <view class="list">
         <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
           <view @tap="edit" data-index="{{index}}" class="mylist">
@@ -21,6 +22,7 @@
   import {connect} from 'wepy-redux'
   import {loadAllAccounts} from '../store/actions'
   import Toast from '../components/toast'
+  import Auth from '../components/auth'
 
   @connect({
     list(state) {
@@ -28,6 +30,9 @@
     },
     message(state) {
       return state.toast.message
+    },
+    needLogin(state) {
+      return state.auth.needLogin
     }
   }, {
     loadAllAccounts
@@ -38,7 +43,8 @@
       navigationBarTitleText: 'bbuddy-wepy'
     }
     components = {
-      toast: Toast
+      toast: Toast,
+      auth: Auth
     }
     methods = {
       edit: function (e) {
@@ -50,10 +56,6 @@
     }
 
     onRoute() {
-      this.methods.loadAllAccounts()
-    }
-
-    onLoad() {
       this.methods.loadAllAccounts()
     }
   }
