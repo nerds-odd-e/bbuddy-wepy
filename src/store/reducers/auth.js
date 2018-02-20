@@ -1,12 +1,17 @@
 import { handleActions } from 'redux-actions'
-import {REQUIRE_LOGIN} from '../types'
+import {LOGIN, REQUIRE_LOGIN} from '../types'
 
 export default handleActions({
   [REQUIRE_LOGIN] (state, action) {
-    console.log('require login reducer called')
     return {
       ...state,
       needLogin: true
+    }
+  },
+  [LOGIN] (state, action) {
+    return {
+      ...state,
+      needLogin: false
     }
   }
 }, {

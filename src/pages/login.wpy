@@ -2,23 +2,38 @@
   <view class="container">
     <panel>
       <view class="title" slot="title">Login</view>
-      <form bindsubmit="login">
+      <form bindsubmit="signIn">
         <text>Email</text>
         <input name="email" placeholder="Input email here"/>
         <text>Password</text>
         <input name="password" placeholder="Input password here" type="password"/>
-        <button formType="submit">Login</button>
+        <button formType="submit">Sign In</button>
       </form>
+      <auth :needLogin.sync="needLogin"/>
     </panel>
   </view>
 </template>
 <script>
   import wepy from 'wepy'
+  import {connect} from 'wepy-redux'
+  import {login} from '../store/actions'
+  import Auth from '../components/auth'
+
+  @connect({
+    needLogin(state) {
+      return state.auth.needLogin
+    }
+  }, {
+    login
+  })
 
   export default class Login extends wepy.page {
+    components = {
+      auth: Auth
+    }
     methods = {
-      login(event) {
-        console.log(event.detail.value)
+      signIn(e) {
+        this.methods.login(e.detail.value)
       }
     }
   }

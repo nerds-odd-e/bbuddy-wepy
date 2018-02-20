@@ -12,6 +12,8 @@
           wepy.navigateTo({
             url: '/pages/login'
           })
+        } else {
+          wepy.navigateBack()
         }
       }
     }
