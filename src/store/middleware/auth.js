@@ -1,5 +1,5 @@
 import {REQUIRE_LOGIN} from '../types'
-import wepy from 'wepy'
+import {saveToken} from '../../api'
 
 export const auth = store => next => action => {
   if (action.payload && action.payload.statusCode === 401) {
@@ -7,14 +7,7 @@ export const auth = store => next => action => {
   }
 
   if (action.payload && action.payload.statusCode === 200 && action.payload.header) {
-    const {header} = action.payload
-    wepy.setStorageSync('token', {
-      'access-token': header['access-token'],
-      'token-type': header['token-type'],
-      'uid': header['uid'],
-      'client': header['client'],
-      'expiry': header['expiry']
-    })
+    saveToken(action.payload.header)
   }
 
   return next(action)
