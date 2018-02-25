@@ -2,6 +2,7 @@
 <script>
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
+  import {needLogin} from './watch'
 
   @connect({
     needLogin(state) {
@@ -11,15 +12,7 @@
 
   export default class Auth extends wepy.component {
     watch = {
-      needLogin(newValue, oldValue) {
-        if (newValue) {
-          wepy.navigateTo({
-            url: '/pages/login'
-          })
-        } else {
-          wepy.navigateBack()
-        }
-      }
+      needLogin
     }
   }
 </script>
