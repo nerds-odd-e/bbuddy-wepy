@@ -3,7 +3,8 @@ import {REQUIRE_LOGIN} from '../../../src/store/types'
 describe('auth', () => {
   const store = jest.fn()
   const next = jest.fn()
-  jest.setMock('../../../src/api', {saveToken: jest.fn()})
+  const api = {saveToken: jest.fn()}
+  jest.setMock('../../../src/api', api)
   const auth = require('../../../src/store/middleware').auth
   const header = {token: 'token'}
 
@@ -16,7 +17,6 @@ describe('auth', () => {
   })
 
   test('save token if status code is 200', () => {
-    const api = require('../../../src/api')
     const action = {payload: {statusCode: 200, header}}
 
     auth(store)(next)(action)
