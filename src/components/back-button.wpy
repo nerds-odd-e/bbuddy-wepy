@@ -1,5 +1,5 @@
 <template>
-  <button @tap="save" formType="{{formType}}">{{name}}</button>
+  <button @tap="tap" formType="{{formType}}">{{name}}</button>
 </template>
 <script>
   import wepy from 'wepy'
@@ -10,7 +10,7 @@
       formType: String
     }
     methods = {
-      save(e) {
+      tap(e) {
         this.$emit('backTap')
         wepy.navigateBack()
       }

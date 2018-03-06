@@ -1,10 +1,10 @@
 <template>
-  <form bindsubmit="save">
+  <form @submit="saveSubmit">
     <text>Name</text>
     <input name="name" placeholder="Input name here" value="{{name}}"/>
     <text>Balance</text>
     <input name="balance" placeholder="Input balance here" value="{{balance}}" />
-    <backButton formType="submit" name="Save" @backTap="save"></backButton>
+    <backButton formType="submit" name="Save"></backButton>
   </form>
 </template>
 <script>
@@ -20,7 +20,7 @@
       backButton: BackButton
     }
     methods = {
-      save(e) {
+      saveSubmit(e) {
         this.$emit('save', e.detail.value)
       }
     }
