@@ -1,13 +1,13 @@
 <template>
   <view class="container">
     <panel>
-      <view class="title" slot="title">Login</view>
+      <view class="title" slot="title">Please Sign in</view>
       <form bindsubmit="signIn">
         <text>Email</text>
-        <input name="email" placeholder="Input email here"/>
+        <input id="Username" name="email" placeholder="Input email here"/>
         <text>Password</text>
-        <input name="password" placeholder="Input password here" type="password"/>
-        <button formType="submit">Sign In</button>
+        <input id="Password" name="password" placeholder="Input password here" type="password"/>
+        <button formType="submit">Login</button>
       </form>
     </panel>
   </view>
