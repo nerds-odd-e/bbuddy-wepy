@@ -1,0 +1,24 @@
+<template>
+  <view class="title" slot="title">Dashboard</view>
+  <navigator url="/pages/dashboard" hover-class="navigator-hover">Accounts</navigator>
+  <auth/>
+</template>
+<script>
+  import wepy from 'wepy'
+  import Auth from '../components/auth'
+  import {connect} from 'wepy-redux'
+  import {loadAllAccounts} from '../store/actions'
+
+  @connect({}, {
+    loadAllAccounts
+  })
+
+  export default class Home extends wepy.page {
+    components = {
+      auth: Auth
+    }
+    onLoad() {
+      this.methods.loadAllAccounts()
+    }
+  }
+</script>

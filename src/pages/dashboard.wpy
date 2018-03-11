@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <panel>
-      <view class="title" slot="title">Account List</view>
+      <view class="title" slot="title">Accounts</view>
       <view class="btn-area">
         <navigator url="/pages/add-account">Add Account</navigator>
       </view>
