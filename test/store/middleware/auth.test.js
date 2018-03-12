@@ -1,4 +1,4 @@
-import {REQUIRE_LOGIN} from '../../../src/store/types'
+import {LOGIN, LOGIN_FAILED, REQUIRE_LOGIN} from '../../../src/store/types'
 
 describe('auth', () => {
   const store = jest.fn()
@@ -31,5 +31,13 @@ describe('auth', () => {
     auth(store)(next)(action)
 
     expect(next).toBeCalledWith(action)
+  })
+
+  test('login failed if status code is 401 and the action is login', () => {
+    auth(store)(next)({type: LOGIN, payload: {statusCode: 401}})
+
+    expect(next).toBeCalledWith({
+      type: LOGIN_FAILED
+    })
   })
 })

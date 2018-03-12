@@ -10,18 +10,23 @@
         <button formType="submit">Login</button>
       </form>
     </panel>
+    <toast/>
   </view>
 </template>
 <script>
   import wepy from 'wepy'
   import {connect} from 'wepy-redux'
   import {login} from '../store/actions'
+  import Toast from '../components/toast'
 
   @connect({}, {
     login
   })
 
   export default class Login extends wepy.page {
+    components = {
+      toast: Toast
+    }
     methods = {
       signIn(e) {
         this.methods.login(e.detail.value)

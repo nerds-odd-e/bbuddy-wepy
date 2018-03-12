@@ -1,5 +1,5 @@
 import reducer from '../../../src/store/reducers/toast'
-import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT} from '../../../src/store/types'
+import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT, LOGIN_FAILED} from '../../../src/store/types'
 
 describe('account related toast', () => {
   test('initial state', () => {
@@ -17,5 +17,9 @@ describe('account related toast', () => {
   test('delete account action', () => {
     expect(reducer({message: undefined}, {type: DELETE_ACCOUNT}))
       .toEqual({message: 'Delete Successfully'})
+  })
+  test('login failed action', () => {
+    expect(reducer({message: undefined}, {type: LOGIN_FAILED}))
+      .toEqual({message: 'Login failed'})
   })
 })

@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT} from '../types'
+import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT, LOGIN_FAILED} from '../types'
 
 export default handleActions({
   [ADD_ACCOUNT] (state, action) {
@@ -18,6 +18,12 @@ export default handleActions({
     return {
       ...state,
       message: 'Delete Successfully'
+    }
+  },
+  [LOGIN_FAILED] (state, action) {
+    return {
+      ...state,
+      message: 'Login failed'
     }
   }
 }, {
