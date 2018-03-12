@@ -1,5 +1,5 @@
 import reducer from '../../../src/store/reducers/toast'
-import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT, LOGIN_FAILED} from '../../../src/store/types'
+import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT, LOGIN_FAILED, NETWORK_ERROR} from '../../../src/store/types'
 
 describe('account related toast', () => {
   test('initial state', () => {
@@ -21,5 +21,9 @@ describe('account related toast', () => {
   test('login failed action', () => {
     expect(reducer({message: undefined}, {type: LOGIN_FAILED}))
       .toEqual({message: 'Login failed'})
+  })
+  test('network error action', () => {
+    expect(reducer({message: undefined}, {type: NETWORK_ERROR}))
+      .toEqual({message: 'Network Error'})
   })
 })

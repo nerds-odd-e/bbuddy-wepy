@@ -1,4 +1,4 @@
-import {LOGIN, LOGIN_FAILED, REQUIRE_LOGIN} from '../../../src/store/types'
+import {LOGIN, LOGIN_FAILED, NETWORK_ERROR, REQUIRE_LOGIN} from '../../../src/store/types'
 
 describe('auth', () => {
   const store = jest.fn()
@@ -38,6 +38,14 @@ describe('auth', () => {
 
     expect(next).toBeCalledWith({
       type: LOGIN_FAILED
+    })
+  })
+
+  test('network error if action has error', () => {
+    auth(store)(next)({error: true})
+
+    expect(next).toBeCalledWith({
+      type: NETWORK_ERROR
     })
   })
 })

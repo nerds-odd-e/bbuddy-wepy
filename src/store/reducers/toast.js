@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT, LOGIN_FAILED} from '../types'
+import {ADD_ACCOUNT, DELETE_ACCOUNT, EDIT_ACCOUNT, LOGIN_FAILED, NETWORK_ERROR} from '../types'
 
 export default handleActions({
   [ADD_ACCOUNT] (state, action) {
@@ -24,6 +24,12 @@ export default handleActions({
     return {
       ...state,
       message: 'Login failed'
+    }
+  },
+  [NETWORK_ERROR] (state, action) {
+    return {
+      ...state,
+      message: 'Network Error'
     }
   }
 }, {

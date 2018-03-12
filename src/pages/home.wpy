@@ -2,10 +2,12 @@
   <view class="title" slot="title">Dashboard</view>
   <navigator url="/pages/dashboard" hover-class="navigator-hover">Accounts</navigator>
   <auth/>
+  <toast/>
 </template>
 <script>
   import wepy from 'wepy'
   import Auth from '../components/auth'
+  import Toast from '../components/toast'
   import {connect} from 'wepy-redux'
   import {loadAllAccounts} from '../store/actions'
 
@@ -15,7 +17,8 @@
 
   export default class Home extends wepy.page {
     components = {
-      auth: Auth
+      auth: Auth,
+      toast: Toast
     }
     onLoad() {
       this.methods.loadAllAccounts()
