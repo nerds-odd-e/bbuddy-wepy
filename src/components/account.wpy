@@ -1,10 +1,10 @@
 <template>
   <form @submit="saveSubmit">
     <text>Name</text>
-    <input name="name" placeholder="Input name here" value="{{name}}"/>
+    <input id="name" name="name" placeholder="Input name here" value="{{name}}"/>
     <text>Balance</text>
-    <input name="balance" placeholder="Input balance here" value="{{balance}}" />
-    <backButton formType="submit" name="Save"></backButton>
+    <input id="balanceBroughtForward" name="balance" placeholder="Input balance here" value="{{balance}}" />
+    <button formType="submit">Save</button>
   </form>
 </template>
 <script>
@@ -22,6 +22,7 @@
     methods = {
       saveSubmit(e) {
         this.$emit('save', e.detail.value)
+        wepy.navigateBack()
       }
     }
   }

@@ -3,12 +3,12 @@
     <panel>
       <view class="title" slot="title">Accounts</view>
       <view class="btn-area">
-        <navigator url="/pages/add-account">Add Account</navigator>
+        <navigator url="/pages/add-account">Add</navigator>
       </view>
       <view class="list">
         <block wx:for-items="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="id">
           <view @tap="edit" data-index="{{index}}" class="mylist">
-            <text>{{item.name}}: {{item.balance}}</text>
+            <text>{{item.name}} {{item.balance}}</text>
           </view>
         </block>
       </view>
