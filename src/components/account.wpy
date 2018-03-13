@@ -9,20 +9,15 @@
 </template>
 <script>
   import wepy from 'wepy'
-  import BackButton from './back-button'
 
   export default class Account extends wepy.component {
     props = {
       name: String,
       balance: Number
     }
-    components = {
-      backButton: BackButton
-    }
     methods = {
       saveSubmit(e) {
         this.$emit('save', e.detail.value)
-        wepy.navigateBack()
       }
     }
   }

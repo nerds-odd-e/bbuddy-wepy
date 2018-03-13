@@ -3,7 +3,7 @@
     <panel>
       <view class="title" slot="title">Edit Account</view>
       <account @save.user="edit" :name.sync="name" :balance.sync="balance"></account>
-      <backButton @backTap.user="delete" name="Delete"></backButton>
+      <button @tap="delete">Delete</button>
     </panel>
   </view>
 </template>
@@ -12,9 +12,12 @@
   import {deleteAccount, editAccount} from '../store/actions'
   import {connect} from 'wepy-redux'
   import Account from '../components/account'
-  import BackButton from '../components/back-button'
 
-  @connect({}, {
+  @connect({
+    updatedTime(state) {
+      return state.account.updatedTime
+    }
+  }, {
     editAccount,
     deleteAccount
   })
@@ -26,8 +29,7 @@
       balance: undefined
     }
     components = {
-      account: Account,
-      backButton: BackButton
+      account: Account
     }
     methods = {
       delete() {
@@ -40,6 +42,13 @@
           ...account,
           id: this.id
         })
+      }
+    }
+    watch = {
+      updatedTime(newValue, oldValue) {
+        if (newValue) {
+          wepy.navigateBack()
+        }
       }
     }
 

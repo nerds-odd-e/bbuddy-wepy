@@ -12,13 +12,24 @@
   import {addAccount} from '../store/actions'
   import Account from '../components/account'
 
-  @connect({}, {
+  @connect({
+    updatedTime(state) {
+      return state.account.updatedTime
+    }
+  }, {
     addAccount
   })
 
   export default class AddAccount extends wepy.page {
     components = {
       account: Account
+    }
+    watch = {
+      updatedTime(newValue, oldValue) {
+        if (newValue) {
+          wepy.navigateBack()
+        }
+      }
     }
   }
 </script>
